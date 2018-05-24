@@ -10,11 +10,15 @@ By the end of this tutorial, we will have created a Heroku-hosted Node.js server
 
 In _production_ (and also during _staging_, a local test of the production build), our simple React app will be served by a single server that does everything—delivers web files, responds to REST HTTP requests, and connects users to third-party services like authentication or data:
 
-{Insert picture here}
+<p align="center">
+  <img src="./readmeimgs/ClientServer1.png"/>
+</p>
 
 However, during _development_, we'd like to take advantage of create-react-app's development server/debugger to serve React files, while still having our own server to provide other services. Towards this end, our project's target development configuration will look like this:
 
-{Insert picture here}
+<p align="center">
+  <img src="./readmeimgs/ClientServer2.png"/>
+</p>
 
 ## Getting started
 
