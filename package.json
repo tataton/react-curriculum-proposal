@@ -1,0 +1,12 @@
+{
+  "name": "full-stack-basic",
+  "version": "1.0.0",
+  "description": "Demo project 2 for Prime Academy React curriculum",
+  "main": "server.js",
+  "repository": "https://github.com/tataton/react-curriculum-proposal.git",
+  "author": "T. Andrew Taton <thomas.andrew.taton@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

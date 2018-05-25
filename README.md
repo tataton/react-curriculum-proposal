@@ -96,7 +96,11 @@ You will be setting up a create-react-app (client) project _inside_ a Node.js (s
 
     The inner, client project has elements of an independently maintained project that we don't need, because we'll be maintaining the project from the outer, project folder level. You can delete `/client/README.md` (which is just the React.js README docs) and `/client/.gitignore`. However, we will be installing external packages at the client level, so do NOT delete `/client/package.json` or `/client/node_modules`. In fact, if you open `/client/package.json`, you will see the minimum dependencies that CRA installs: `react` and `react-dom` for your React app; and `react-scripts`, which incorporates optimal code and configurations for `webpack`, `babel`, and the dev server, all in one package. 
     
-    At this point, delete `/client/src/registerServiceWorker.js`; it will interfere with the client accessing local server resources during development. (You can add it back later if you wish, or include conditional code to implement it only in production. Or not, whatever.)
+    At this point, delete `/client/src/registerServiceWorker.js`; it will interfere with the client accessing local server resources during development. (You can add it back later if you wish, or include conditional code to implement it only in production. Or not, whatever.) You will also need to delete the references to this file in `/client/src/index.js`:
+
+    ~~`import registerServiceWorker from ./registerServiceWorker';`~~
+    ~~`registerServiceWorker();`~~
+
 
 * Meanwhile, the outer project folder needs some of the things we deleted from the inner folder. Create `/(project)/README.md` and `/(project)/.gitignore`, and make sure your `.gitignore` includes
     ```
