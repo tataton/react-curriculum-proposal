@@ -2,7 +2,7 @@
 
 This proposal outlines a curriculum sequence for learning React.js and its ecosystem. It is aimed at staff and students at Prime Digital Academy in Minneapolis. A primary argument of this proposal is that Prime students could learn React _instead_ of learning about AngularJS, the last front-end framework that Prime students currently cover in depth. The proposal includes an integration plan with other curriculum elements that students currently learn in the context of AngularJS apps—including OAuth2 authentication, build automation, and remote deployment.
 
-The proposal is written as a tutorial, but I wouldn't expect anyone to use this document itself as a teaching tool. Rather, my hope is to work on a pedagogical framwework for switching Prime to React. I also hope that instructors will tailor the content to their own style. I'd also appreciate feedback, by e-mail, issues or pull requests.
+The proposal is written as a sequence of project tutorials, but I wouldn't expect anyone to use this document itself as a teaching tool. Rather, my hope is to work on a pedagogical framwework for switching Prime to React. I also hope that instructors will tailor the content to their own style. These projects would be covered directly by instructors; I have not yet proposed/designed two- and four-person student projects that work so well in the current Prime curriculum. I'd very much appreciate feedback on that, or on any of this repo, by e-mail, issues or pull requests. 
 
 This tutorial is divided into three independent demonstration projects ("front-end", "full-stack", and "final"), and each project is divided into topical sections. Each section will have its own repository branch and accompanying README.
 
