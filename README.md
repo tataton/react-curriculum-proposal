@@ -1,10 +1,14 @@
+# `full-stack-basic`
+
+The second full demonstration project connects a React front end to a Node.js back end server. It also takes advantage of `create-react-app`, a build tool developed by Facebook to simplify the process of initiating and maintaining a React project.
+
 # Simultaneous Client-Server Development with Create-React-App
 
 Create-React-App (CRA) is a powerful tool for the React developer. By taking responsibility for keeping babel and webpack configurations up-to-date, and by providing a hot-reloading development server, debugger, and testing environment out of the box, CRA helps developers focus on creating their website, without getting mired in the details of setting up their development environment. But CRA only scaffolds the front end of a website; by design, CRA does not provide any framework for back-end development. In fact, the development server that comes with CRA and that helps so much with working on the front end can actually get in the way of simultaneously creating a back-end server.
 
 But it is possible, even straightforward, to develop a local Node.js server in concert with CRA. The goal of this repository is to walk you through setting up a simple Node/Express/React project with `create-react-app`. Although you might be able to clone and install this repo as a stub for your own projects, I actually think it is easier to set the project up from scratch yourself. This repo will show you how.
 
-By the end of this tutorial, we will have created a Heroku-hosted Node.js server that connects to a database, retrieves live data from external sources, and serves that data within a React app.
+By the end of this project tutorial (described over two branches of this repo), we will have created a Heroku-hosted Node.js server that connects to a database, retrieves live data from external sources, and serves that data within a React app.
 
 ## Our Target: Two Development Servers that Mimic One Production Server
 
@@ -39,7 +43,7 @@ You will be setting up a create-react-app (client) project _inside_ a Node.js (s
     "scripts": {"start": "node server.js"}
     ```
 
-* Create a `/server` subfolder to keep all of the Node.js code that supports `server.js`. Don't put anything in there yet.
+* Create a `/server` subfolder to keep all of the Node.js code that supports `server.js`. Don't put anything in there yet; we won't be using this folder until the next branch.
 
 * Feel free to set up version control in the project folder. 
 
@@ -70,7 +74,7 @@ You will be setting up a create-react-app (client) project _inside_ a Node.js (s
 
     The "hot-reloading" part of the development server means that it will refresh the browser every time you save changes to the code in the `/client/src` folder. Feel free to see this in action for yourself—open `App.js`, edit the introduction text, save, and watch as CRA debugs, re-bundles, and minifies your code, and then refreshes your browser to show the changes.
 
-    CRA does _not_, however, track changes to the code in `/server`. If you want your front-end content to reflect any back-end changes you've made, you might need to refresh your browser manually, or `^C` to terminate the CRA server and then re-start it. (Depending on what kind of change you've made.) We're about to make some server changes, so terminate the CRA dev server.
+    CRA does _not_, however, track changes to the code in `/server`. If you want your front-end content to reflect any back-end changes you've made, you might need to refresh your browser manually, or `^C` to terminate the CRA server and then re-start it. (Depending on what kind of change you've made.)
 
 * At this point, your project folder structure should look something like this:
 
@@ -90,7 +94,7 @@ You will be setting up a create-react-app (client) project _inside_ a Node.js (s
             └── registerServiceWorker.js
     ```
 
-    The inner, client project has elements of an independently maintained project that we don't need, because we'll be maintaining the project from the outer, project folder level. You can delete `/client/README.md` (which is just the React.js README docs) and `/client/.gitignore`. However, we will be installing external packages at the client level, so do NOT delete `/client/package.json` or `/client/node_modules`. In fact, if you open `/client/package.json`, you will see the minimum dependencies that CRA needs: `react` and `react-dom` for your React app; and `react-scripts`, which includes optimal code and configurations for `webpack`, `babel`, the dev server, and a bunch of other things. 
+    The inner, client project has elements of an independently maintained project that we don't need, because we'll be maintaining the project from the outer, project folder level. You can delete `/client/README.md` (which is just the React.js README docs) and `/client/.gitignore`. However, we will be installing external packages at the client level, so do NOT delete `/client/package.json` or `/client/node_modules`. In fact, if you open `/client/package.json`, you will see the minimum dependencies that CRA installs: `react` and `react-dom` for your React app; and `react-scripts`, which incorporates optimal code and configurations for `webpack`, `babel`, and the dev server, all in one package. 
     
     At this point, delete `/client/src/registerServiceWorker.js`; it will interfere with the client accessing local server resources during development. (You can add it back later if you wish, or include conditional code to implement it only in production. Or not, whatever.)
 
@@ -101,7 +105,7 @@ You will be setting up a create-react-app (client) project _inside_ a Node.js (s
     ```
     (This is also a good time to `git commit` your project to version control.)
     
-* Now we're ready to start building our back-end, Node/Express server. We'll start very simple, and then progressively add the kind of functionality you might expect from a Node.js back end. We'll also be configuring the CRA server to act as a "proxy server"—to handle 
+* Now we're ready to start building our back-end, Node/Express server. We'll start very simple, and then progressively add the kind of functionality you might expect from a Node.js back end.
 
     Install Express.js in the project directory:
     ```
@@ -178,7 +182,7 @@ From here onward, we can leave our two server processes running while we edit ou
 
 ## Integrating Server Calls into the React Lifecycle
 
-Now let's see if we can complete a React app that loads initial HTML/CSS/JS from the server, displays this on the DOM, fetches our author data (via the `/author` route), and updates the DOM with this information. In a React app, sequential actions like these are often triggered by _lifecycle methods_. We will use one of these methods, `componentDidMount()`, to handle our HTTP data request.
+Now let's see if we can complete a React app that loads initial HTML/CSS/JS from the server, displays this on the DOM, fetches our author data (via the `/author` route), and updates the DOM with this information. In a React app, sequential actions like these are often triggered by _lifecycle methods_—methods built into the React.Component superclass that fire at predictable stages of the components life. We will use one of these methods, `componentDidMount()`, to handle our HTTP data request.
 
 * Let's create a new component file `AuthorRef.js` in the `/client/src` directory, and a new component `AuthorRef`, to display the page author's name:
     ```javascript
@@ -228,7 +232,7 @@ Now let's see if we can complete a React app that loads initial HTML/CSS/JS from
     ```
     This probably seems like a lot of code to display just one sentence, but the code controls three different events in the component's lifecycle:
 
-    1. When the component is first invoked, the `constructor()` method is called, and sets the initial state of the component. At first, a `this.state.isLoadingAuthor` flag is set to true, and this makes the `render()` method display a "Loading" message.
+    1. When the component is first invoked, the `constructor()` method is called, and sets the initial state of the component. At first, a `this.state.isLoadingAuthor` flag is set to true, and this makes the `render()` method display a "Loading" message. Although you'll often see `props` in React component constructor expressions, we can omit it here because we don't use `this.props` in the constructor.
     2. Once the component has been mounted (and the "Loading" message displayed), the component calls its `componentDidMount()` lifecycle method. This initiates the HTTP GET request that retrieves the authorName, changes the component state, and (because state is changed) triggers a re-render.
     3. Finally, the component calls `render()` again; this time, `this.state.isLoadingAuthor` is false, and (as long as there was no error in completing the GET request) the component displays the author.
 
@@ -238,7 +242,14 @@ Now let's see if we can complete a React app that loads initial HTML/CSS/JS from
     ```javascript
     import AuthorRef from './AuthorRef';
     ```
-    _After the `className=App-intro` paragraph:_
+    _and after the `className=App-intro` paragraph:_
     ```javascript
     <AuthorRef />
     ```
+    Save, and your browser should automatically refresh and display your author signature. Success!
+    
+    In all likelihood, your app's HTTP request was handled by your server so quickly that you didn't even get to see the "Loading" message. If you like, you could purposely slow down your server's response by coding a `setTimeout()` delay into your Express `/author` route, and then you'd be able to see the `isLoadingAuthor = true` state of your `AuthorRef` component.
+
+Yay! You've built a client-server React application in not-too-many lines of code! And you've set the stage for greater things, by establishing a development environment that allows you to make concurrent changes to both the server and client code. We won't be including automatic build tools on the server side (such as Nodemon or SuperTest), but you could easily imagine adding them.
+
+In the [next section of this project](https://github.com/tataton/react-curriculum-proposal/tree/full-stack-intermediate), we'll work more extensively with lifecycle methods and code patterns in React, and we'll make our Node.js server connect with external resources. Then we'll learn a little about testing, and finally host our project on the internet (via Heroku).
