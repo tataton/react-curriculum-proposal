@@ -28,7 +28,7 @@ This tutorial is divided into three independent demonstration projects ("front-e
 * Introduces lifecycle methods, using `componentDidMount()` as a first example.
 * Guides you through constructing an extremely simple full-stack Node/Express/React project with CRA.
 
-`full-stack-intermediate` (in progress):
+[`full-stack-intermediate`](https://github.com/tataton/react-curriculum-proposal/tree/full-stack-intermediate) (in progress):
 
 * Demonstrates how the Node.js server can coordinate requests to external data sources, without the need for configuring CORS permissions on the client side. (We'll be using live earthquake data from the U.S. Geological Survey as our primary data source.)
 * Explores the difference between stateful and functional stateless components in React.
