@@ -154,9 +154,9 @@ In the interest of keeping things simple, we are going to have our client applic
     ```
     > npm start
     ```
-    and testing the address http://localhost:5000/author in a tool like Postman, or in the browser. If all went well, the response should be a JSON object with your name in it!
+    and sending an HTTP GET request to the address http://localhost:5000/author in a tool like Postman, or in the browser. If all went well, the response should be a JSON object with your name in it!
 
-* This works, as long as our CRA dev server is turned off. But the moment we turn it on, the CRA server will intercept all communication with the server and interpret it as requests for web files. That's unfortunate; we need the CRA dev server, listening on port 3000, to know that non-file requests should be handled by our Node.js server listening on port 5000. We can do this by configuring the CRA server to _proxy_ these requests to the right address. Luckily for us, CRA makes this easy to do. All we need is to add a key-value pair to our `/client/package.json`:
+* Now that we have two servers working independently, what we really want is for our browser to communicate with just one domain (as it will in production). We want our browser to send a GET request to `'/'` to get files, and to `'/author'` to get data. Unfortunately, the CRA server is set by default to interpret all requests as file requests. Instead, we need the CRA dev server, listening on port 3000, to know that non-file requests should be handled by our Node.js server listening on port 5000. We can do this by configuring the CRA server to _proxy_ these requests to the right address. Luckily for us, CRA makes this easy to do. All we need is to add a key-value pair to our `/client/package.json`:
 
     ```
     {
@@ -186,7 +186,7 @@ From here onward, we can leave our two server processes running while we edit ou
 
 ## Integrating Server Calls into the React Lifecycle
 
-Now let's see if we can complete a React app that loads initial HTML/CSS/JS from the server, displays this on the DOM, fetches our author data (via the `/author` route), and updates the DOM with this information. In a React app, sequential actions like these are often triggered by _lifecycle methods_—methods built into the React.Component superclass that fire at predictable stages of the components life. We will use one of these methods, `componentDidMount()`, to handle our HTTP data request.
+Now let's see if we can complete a React app that loads initial HTML/CSS/JS from the server, displays this on the DOM, fetches our author data (via the `/author` route), and updates the DOM with this information. In a React app, sequential actions like these are often triggered by _lifecycle methods_—methods built into the React.Component superclass that fire at predictable stages of a component's life. We will use one of these methods, `componentDidMount()`, to handle our HTTP data request.
 
 * Let's create a new component file `AuthorRef.js` in the `/client/src` directory, and a new component `AuthorRef`, to display the page author's name:
     ```javascript
@@ -221,9 +221,9 @@ Now let's see if we can complete a React app that loads initial HTML/CSS/JS from
         }
 
         render() {
-            if (isLoadingAuthor) {
+            if (this.state.isLoadingAuthor) {
                 return (<p>Loading author info....</p>)
-            } else if (isError) {
+            } else if (this.state.isError) {
                 return (<p>Error loading author info.</p>)
             } else {
                 return (<p>Written by {this.state.authorName}.</p>)
