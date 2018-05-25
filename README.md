@@ -1,8 +1,10 @@
 # Curriculum Proposal: Prime Academy React
 
-This proposal outlines a curriculum sequence for learning React.js and its ecosystem. It is aimed at students at Prime Digital Academy in Minneapolis. A primary argument of this proposal is that Prime students could learn React _instead_ of learning about AngularJS, the last front-end framework that Prime students currently cover. The proposal includes an integration plan with other curriculum elements that students currently learn in the context of AngularJS apps—including OAuth2 authentication, build automation, and remote deployment.
+This proposal outlines a curriculum sequence for learning React.js and its ecosystem. It is aimed at staff and students at Prime Digital Academy in Minneapolis. A primary argument of this proposal is that Prime students could learn React _instead_ of learning about AngularJS, the last front-end framework that Prime students currently cover in depth. The proposal includes an integration plan with other curriculum elements that students currently learn in the context of AngularJS apps—including OAuth2 authentication, build automation, and remote deployment.
 
-The proposal is written as a tutorial, though the primary audience is instructors, not students, and I expect that those instructors will tailor the content to their own style. This tutorial is divided into three independent demonstration projects ("front-end", "full-stack", and "final"), and each project is divided into topical sections. Each section will have its own repository branch and accompanying README.
+The proposal is written as a tutorial, but I wouldn't expect anyone to use this document itself as a teaching tool. Rather, my hope is to work on a pedagogical framwework for switching Prime to React. I also hope that instructors will tailor the content to their own style. I'd also appreciate feedback, by e-mail, issues or pull requests.
+
+This tutorial is divided into three independent demonstration projects ("front-end", "full-stack", and "final"), and each project is divided into topical sections. Each section will have its own repository branch and accompanying README.
 
 `front-end-intro` (proposed):
 
@@ -19,7 +21,7 @@ The proposal is written as a tutorial, though the primary audience is instructor
 
 * Explains babel, webpack, and automated build tools.
 
-`full-stack-basic` (COMPLETE):
+[`full-stack-basic`](https://github.com/tataton/react-curriculum-proposal/tree/full-stack-basic) (COMPLETE):
 
 * Introduces create-react-app (CRA) as a build tool.
 * Describes how to develop a Node.js server and benefit from create-react-app at the same time, and explains the configuration settings required to do it.
