@@ -1,6 +1,11 @@
 # `full-stack-basic`
 
-The second full demonstration project connects a React front end to a Node.js back end server. It also takes advantage of `create-react-app`, a build tool developed by Facebook to simplify the process of initiating and maintaining a React project.
+The second full demonstration project connects a React front end to a Node.js back end server. It also takes advantage of `create-react-app`, a build tool developed by Facebook to simplify the process of initiating and maintaining a React project. So, our goals for this branch (copied from [`master`](https://github.com/tataton/react-curriculum-proposal/tree/master)) are:
+
+* Introduce create-react-app (CRA) as a build tool.
+* Describe how to develop a Node.js server and benefit from create-react-app at the same time, and explain the configuration settings required to do it.
+* Introduce lifecycle methods, using `componentDidMount()` as a first example.
+* Guide you through constructing an extremely simple full-stack Node/Express/React project with CRA.
 
 # Simultaneous Client-Server Development with Create-React-App
 
@@ -257,3 +262,11 @@ Now let's see if we can complete a React app that loads initial HTML/CSS/JS from
 Yay! You've built a client-server React application in not-too-many lines of code! And you've set the stage for greater things, by establishing a development environment that allows you to make concurrent changes to both the server and client code. We won't be including automatic build tools on the server side (such as Nodemon or SuperTest), but you could easily imagine adding them.
 
 In the [next section of this project](https://github.com/tataton/react-curriculum-proposal/tree/full-stack-intermediate), we'll work more extensively with lifecycle methods and code patterns in React, and we'll make our Node.js server connect with external resources. Then we'll learn a little about testing, and finally host our project on the internet (via Heroku).
+
+## References
+
+[Create React App with an Express Backend](https://daveceddia.com/create-react-app-express-backend/), David Ceddia
+
+[Create React App with Express in Production](https://daveceddia.com/create-react-app-express-production/), David Ceddia
+
+[Create-React-App docs on manual proxy configuration](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually)
